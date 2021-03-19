@@ -1,0 +1,8 @@
+---
+# Basic playbook with the bare minimum software to get started
+- hosts: localhost
+  connection: local
+  
+  roles:
+    - common
+    - freeipa

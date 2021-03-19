@@ -1,0 +1,6 @@
+---
+# tasks file for common
+- name: Install FreeIPA
+  ansible.builtin.package:
+    name: freeipa-server
+    state: present
