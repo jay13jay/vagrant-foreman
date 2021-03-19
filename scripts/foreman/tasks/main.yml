@@ -21,5 +21,7 @@
 
 - debug:
     var: foreman_install_out.stdout
+- debug:
+    var: foreman_install_out.stderr
   
     

@@ -39,6 +39,7 @@
 - name: Output Private Key
   ansible.builtin.shell:
     cmd: cat "{{ adminout.ssh_key_file }}"
+  when: adminout.changed
   register: adminkey
 
 - debug:
@@ -59,6 +60,7 @@
 - name: Output Private Key
   ansible.builtin.shell:
     cmd: cat "{{ normout.ssh_key_file }}"
+  when: normout.changed
   register: normkey
 
 - debug:
