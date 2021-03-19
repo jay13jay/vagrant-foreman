@@ -6,6 +6,8 @@ admin_pass: pass
 norm_user: jay
 norm_pass: test
 
+hostname: foreman.local
+
 common_packages:
   - vim
   - nmap

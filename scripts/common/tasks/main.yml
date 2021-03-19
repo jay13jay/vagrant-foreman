@@ -1,5 +1,14 @@
 ---
 # tasks file for common
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+
+- name: Add Puppet Labs Repository
+  ansible.builtin.package:
+    name: http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+    state: present
+
 - name: Install Common Items
   ansible.builtin.package:
     name: "{{ item }}"
