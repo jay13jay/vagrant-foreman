@@ -1,7 +1,7 @@
 ---
 # vars file for common
 admin_user: admin
-admin_pass: pass
+admin_pass: test
 
 norm_user: jay
 norm_pass: test
@@ -17,6 +17,11 @@ common_packages:
   - nmap
   - python-pip
   - git
+  - wget
+  - mlocate
+  - which
+  - expect
 
 pip_packages:
   - passlib
+  - pexpect
