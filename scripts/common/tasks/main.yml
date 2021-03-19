@@ -65,3 +65,27 @@
 
 - debug:
     var:  normkey.stdout
+
+- name: Copy Github Private Key
+  copy:
+    src: "{{ playbook_dir }}"/files/gihub_rsa"
+    dest: "{{ item }}"/.ssh/
+    mode: 0600
+  with_items:
+    - "{{ userdirs }}"
+
+- name: Copy Github Public Key
+  copy:
+    src: "{{ playbook_dir }}"/files/gihub_rsa.pub"
+    dest: "{{ item }}"/.ssh/
+    mode: 0600
+  with_items:
+    - "{{ userdirs }}"
+
+- name: Copy SSH Config
+  copy:
+    src: "{{ playbook_dir }}"/files/ssh_config"
+    dest: "{{ item }}"/.ssh/config
+    mode: 0600
+  with_items:
+    - "{{ userdirs }}"
