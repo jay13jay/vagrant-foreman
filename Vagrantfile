@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "centos/7"
+  config.vm.hostname = "foreman.local"
 
   config.vm.box_check_update = false
 
@@ -39,6 +40,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|  
     # Customize the amount of memory on the VM:
+    vb.name = "foreman"
     vb.memory = "4096"
     vb.cpus   = "2"
   end

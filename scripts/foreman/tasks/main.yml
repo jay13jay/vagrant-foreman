@@ -12,14 +12,14 @@
     name: foreman-installer
     state: present
 
-# - name: Run Foreman Install
-#   ansible.builtin.shell: |
-#      foreman-installer \
-#      --foreman-admin-username="{{ admin_user }}" \
-#      --foreman-admin-password="{{ admin_pass }}"
-#   register: foreman_install_out
+- name: Run Foreman Install
+  ansible.builtin.shell: |
+     foreman-installer \
+     --foreman-admin-username="{{ admin_user }}" \
+     --foreman-admin-password="{{ admin_pass }}"
+  register: foreman_install_out
 
-# - debug:
-#     var: foreman_install_out.stdout
+- debug:
+    var: foreman_install_out.stdout
   
     

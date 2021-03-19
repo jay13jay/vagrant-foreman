@@ -17,7 +17,7 @@
     - "{{ common_packages }}"
 
 - name: Install Pip Packages
-  pip:
+  ansible.builtin.pip:
     name: "{{ item }}"
   with_items:
     - "{{ pip_packages }}"
