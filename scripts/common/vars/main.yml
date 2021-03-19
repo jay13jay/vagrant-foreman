@@ -7,8 +7,8 @@ norm_user: jay
 norm_pass: test
 userdirs:
   - /root/
-  - /home/"{{ admin_user }}"
-  - /home/"{{ norm_user }}"
+  - /home/{{ admin_user }}
+  - /home/{{ norm_user }}
 
 hostname: foreman.local
 
