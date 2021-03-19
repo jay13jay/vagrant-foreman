@@ -1,10 +1,10 @@
 # Basic software install
-# pacman -Syu --noconfirm # update the system to latest
 echo "Updating Cache"
 yum makecache
 
 echo "Installing EPEL and Updpating Cache"
-yum -y install epel-release
+# yum -y install epel-release
+rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum makecache
 
 echo "Installing Ansible"

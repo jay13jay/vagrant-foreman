@@ -3,22 +3,20 @@
 - name: Set a hostname
   ansible.builtin.hostname:
     name: "{{ hostname }}"
-
-- name: Add Puppet Labs Repository
-  ansible.builtin.package:
-    name: http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
-    state: present
+  become: true
 
 - name: Install Common Items
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
+  become: true
   with_items:
     - "{{ common_packages }}"
 
 - name: Install Pip Packages
   ansible.builtin.pip:
     name: "{{ item }}"
+  become: true
   with_items:
     - "{{ pip_packages }}"
 
@@ -33,18 +31,20 @@
     ssh_key_bits: 2048
     ssh_key_file: .ssh/id_rsa
   register: adminout
-- debug:
-    var: adminout
+  become: true
 
 - name: Output Private Key
   ansible.builtin.shell:
     cmd: cat "{{ adminout.ssh_key_file }}"
+  when: adminout.changed
   register: adminkey
+  become: true
 
 - debug:
     var:  adminkey.stdout
 
 - name: Configure Unpriiviledged User
+  become: true
   ansible.builtin.user:
     name: "{{ norm_user }}"
     password: "{{ norm_pass }}"
@@ -57,9 +57,35 @@
   register: normout
 
 - name: Output Private Key
+  become: true
   ansible.builtin.shell:
     cmd: cat "{{ normout.ssh_key_file }}"
+  when: normout.changed
   register: normkey
 
 - debug:
     var:  normkey.stdout
+
+# - name: Copy Github Private Key
+#   copy:
+#     src: "{{ playbook_dir }}/files/gihub_rsa"
+#     dest: "{{ item }}/.ssh/"
+#     mode: 0600
+#   with_items:
+#     - "{{ userdirs }}"
+
+# - name: Copy Github Public Key
+#   copy:
+#     src: "{{ playbook_dir }}/files/gihub_rsa.pub"
+#     dest: "{{ item }}/.ssh/"
+#     mode: 0600
+#   with_items:
+#     - "{{ userdirs }}"
+
+# - name: Copy SSH Config
+#   copy:
+#     src: "{{ playbook_dir }}/files/ssh_config"
+#     dest: "{{ item }}/.ssh/config"
+#     mode: 0600
+#   with_items:
+#     - "{{ userdirs }}"
